@@ -19,6 +19,11 @@ class GFTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
+    init(placeholder: String) {
+        super.init(frame: .zero)
+        self.placeholder = placeholder
+    }
+    
     // MARK:- Private
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
@@ -35,8 +40,6 @@ class GFTextField: UITextField {
         
         backgroundColor             = .tertiarySystemBackground
         autocorrectionType          = .no
-        
-        placeholder                 = "Enter a username"
     }
     
 }
