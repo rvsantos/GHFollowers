@@ -22,6 +22,7 @@ class GFTextField: UITextField {
     init(placeholder: String) {
         super.init(frame: .zero)
         self.placeholder = placeholder
+        self.configure()
     }
     
     // MARK:- Private
