@@ -23,23 +23,12 @@ class SearchVC: UIViewController {
         self.configure()
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
     }
     
-    // MARK: - @objc
-    @objc private func pushFollowerListVC() {
-        guard self.isUsernameEntered else {
-            self.presentGFAlertOnMainThread(title: "Empty Username", message: "Please enter a username. We need to know who to look for 😄.", buttonTitle: "Ok")
-            return
-        }
-        
-        let followerListVC = FollowerListVC()
-        followerListVC.username = self.usernameTextField.text
-        followerListVC.title = self.usernameTextField.text
-        self.navigationController?.pushViewController(followerListVC, animated: true)
-    }
     
     // MARK: - Private
     private func configure() {
@@ -49,10 +38,12 @@ class SearchVC: UIViewController {
         self.createDismissKeyboardTapGesture()
     }
     
+    
     private func createDismissKeyboardTapGesture() {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         self.view.addGestureRecognizer(tap)
     }
+    
     
     private func configureLogoImageView() {
         self.view.addSubview(self.logoImageView)
@@ -67,6 +58,7 @@ class SearchVC: UIViewController {
         ])
     }
     
+    
     private func configureTextField() {
         self.view.addSubview(self.usernameTextField)
         self.usernameTextField.delegate = self
@@ -79,6 +71,7 @@ class SearchVC: UIViewController {
         ])
     }
     
+    
     private func configureCallToActionButton() {
         self.view.addSubview(self.callToActionButton)
         self.callToActionButton.addTarget(self, action: #selector(self.pushFollowerListVC), for: .touchUpInside)
@@ -89,6 +82,20 @@ class SearchVC: UIViewController {
             self.callToActionButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -50),
             self.callToActionButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+    
+    
+    // MARK: - @objc
+    @objc private func pushFollowerListVC() {
+        guard self.isUsernameEntered else {
+            self.presentGFAlertOnMainThread(title: "Empty Username", message: "Please enter a username. We need to know who to look for 😄.", buttonTitle: "Ok")
+            return
+        }
+        
+        let followerListVC = FollowerListVC()
+        followerListVC.username = self.usernameTextField.text
+        followerListVC.title = self.usernameTextField.text
+        self.navigationController?.pushViewController(followerListVC, animated: true)
     }
 }
 
