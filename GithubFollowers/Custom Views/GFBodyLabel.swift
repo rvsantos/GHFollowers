@@ -14,18 +14,15 @@ class GFBodyLabel: UILabel {
         super.init(frame: frame)
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     init(textAlignment: NSTextAlignment) {
         super.init(frame: .zero)
         self.textAlignment = textAlignment
         self.configure()
     }
-    
     
     //MARK:- Private
     private func configure() {
