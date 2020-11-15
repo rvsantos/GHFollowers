@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E2F5E112560A365002CB356 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F5E102560A365002CB356 /* Follower.swift */; };
+		1E2F5E142560A46F002CB356 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F5E132560A46F002CB356 /* User.swift */; };
+		1E2F5E182560BDA7002CB356 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F5E172560BDA7002CB356 /* NetworkManager.swift */; };
+		1E2F5E1C2560D5F5002CB356 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F5E1B2560D5F5002CB356 /* ErrorMessage.swift */; };
 		1E51B0F725604AAC003303DE /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E51B0F625604AAC003303DE /* UIViewController+Ext.swift */; };
 		1E9C3D26255DB6C80049151C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C3D25255DB6C80049151C /* AppDelegate.swift */; };
 		1E9C3D28255DB6C80049151C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C3D27255DB6C80049151C /* SceneDelegate.swift */; };
@@ -24,6 +28,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E2F5E102560A365002CB356 /* Follower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
+		1E2F5E132560A46F002CB356 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1E2F5E172560BDA7002CB356 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		1E2F5E1B2560D5F5002CB356 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		1E51B0F625604AAC003303DE /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		1E9C3D22255DB6C80049151C /* GithubFollowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubFollowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E9C3D25255DB6C80049151C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +72,31 @@
 				1E9C3D33255DB6CB0049151C /* Info.plist */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		1E2F5E0F2560A355002CB356 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1E2F5E102560A365002CB356 /* Follower.swift */,
+				1E2F5E132560A46F002CB356 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1E2F5E162560BD8E002CB356 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				1E2F5E172560BDA7002CB356 /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		1E2F5E1A2560D5D5002CB356 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1E2F5E1B2560D5F5002CB356 /* ErrorMessage.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		1E51B0F925605240003303DE /* Screens */ = {
@@ -115,6 +148,9 @@
 		1E9C3D24255DB6C80049151C /* GithubFollowers */ = {
 			isa = PBXGroup;
 			children = (
+				1E2F5E1A2560D5D5002CB356 /* Utilities */,
+				1E2F5E162560BD8E002CB356 /* Managers */,
+				1E2F5E0F2560A355002CB356 /* Model */,
 				1E51B0FB256052A3003303DE /* Extensions */,
 				1E51B0FA25605270003303DE /* Custom Views */,
 				1E51B0F925605240003303DE /* Screens */,
@@ -198,10 +234,14 @@
 				1E9C3D4C255DF63C0049151C /* GFButton.swift in Sources */,
 				1E9C3D42255DEC150049151C /* SearchVC.swift in Sources */,
 				1E9C3D54255E137C0049151C /* FollowerListVC.swift in Sources */,
+				1E2F5E142560A46F002CB356 /* User.swift in Sources */,
 				1EB99252255F9EAF00FBBA8E /* GFAlertVC.swift in Sources */,
+				1E2F5E112560A365002CB356 /* Follower.swift in Sources */,
 				1E9C3D57255E177D0049151C /* BaseViewController.swift in Sources */,
 				1EB9924C255F9BEF00FBBA8E /* GFTitleLabel.swift in Sources */,
 				1E9C3D26255DB6C80049151C /* AppDelegate.swift in Sources */,
+				1E2F5E1C2560D5F5002CB356 /* ErrorMessage.swift in Sources */,
+				1E2F5E182560BDA7002CB356 /* NetworkManager.swift in Sources */,
 				1E9C3D28255DB6C80049151C /* SceneDelegate.swift in Sources */,
 				1EB9924F255F9DCC00FBBA8E /* GFBodyLabel.swift in Sources */,
 			);
