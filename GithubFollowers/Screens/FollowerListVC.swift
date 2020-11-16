@@ -14,6 +14,7 @@ class FollowerListVC: UIViewController {
     //MARK:- Variables
     var username: String!
     var followers: [Follower] = []
+    var filteredFollowers: [Follower] = []
     var page = 1
     var hasMoreFollowers = true
     
@@ -25,6 +26,7 @@ class FollowerListVC: UIViewController {
         super.viewDidLoad()
 
         self.configureViewController()
+        self.configureSearchController()
         self.configureColletionView()
         self.configureDataSource()
         self.getFollowers(username: self.username, page: self.page)
@@ -49,6 +51,15 @@ class FollowerListVC: UIViewController {
         self.collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID)
     }
     
+    private func configureSearchController() {
+        let searchController                                    = UISearchController()
+        searchController.searchResultsUpdater                   = self
+        searchController.searchBar.delegate                     = self
+        searchController.searchBar.placeholder                  = "Search for a username"
+        searchController.obscuresBackgroundDuringPresentation   = false
+        self.navigationItem.searchController                    = searchController
+    }
+    
     private func configureDataSource() {
         self.dataSource = UICollectionViewDiffableDataSource<Section, Follower>(collectionView: self.collectionView, cellProvider: { (collectionView, indexPath, follower) -> UICollectionViewCell? in
             let cell: FollowerCell? = collectionView
@@ -60,10 +71,10 @@ class FollowerListVC: UIViewController {
         })
     }
     
-    private func updateData() {
+    private func updateData(on followers: [Follower]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(self.followers)
+        snapshot.appendItems(followers)
         
         DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
     }
@@ -86,7 +97,7 @@ class FollowerListVC: UIViewController {
                     return
                 }
                 
-                self.updateData()
+                self.updateData(on: self.followers)
                 
             case .failure(let error):
                 self.presentGFAlertOnMainThread(title: "Bad Stuff Happend", message: error.rawValue, buttonTitle: "Ok")
@@ -106,5 +117,17 @@ extension FollowerListVC: UICollectionViewDelegate {
             page += 1
             self.getFollowers(username: self.username, page: page)
         }
+    }
+}
+
+extension FollowerListVC: UISearchResultsUpdating, UISearchBarDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
+        self.filteredFollowers = self.followers.filter { $0.login.lowercased().contains(filter.lowercased())}
+        self.updateData(on: self.filteredFollowers)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.updateData(on: self.followers)
     }
 }
