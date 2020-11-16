@@ -5,7 +5,7 @@
 //  Created by Rafael V. dos Santos on 14/11/20.
 //
 
-import Foundation
+import UIKit
 
 class NetworkManager {
     
@@ -13,7 +13,8 @@ class NetworkManager {
     static let shared   = NetworkManager()
     
     //MARK:- Constants
-    let baseUrl         = "https://api.github.com"
+    private let baseUrl = "https://api.github.com"
+    let cache           = NSCache<NSString, UIImage>()
     
     //MARK:- Initialization
     private init() {}

@@ -9,9 +9,7 @@ import UIKit
 
 class FollowerListVC: UIViewController {
 
-    enum Section {
-        case main
-    }
+    enum Section { case main }
     
     //MARK:- Variables
     var username:       String!
@@ -24,10 +22,10 @@ class FollowerListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.getFollowers()
         self.configureViewController()
         self.configureColletionView()
         self.configureDataSource()
+        self.getFollowers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,7 +44,6 @@ class FollowerListVC: UIViewController {
         self.view.addSubview(self.collectionView)
         self.collectionView.backgroundColor = .systemBackground
         self.collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID)
-        
     }
     
     private func configureDataSource() {
