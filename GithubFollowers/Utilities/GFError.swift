@@ -1,8 +1,8 @@
 //
-//  ErrorMessage.swift
+//  GFError.swift
 //  GithubFollowers
 //
-//  Created by Rafael V. dos Santos on 15/11/20.
+//  Created by Rafael V. dos Santos on 17/11/20.
 //
 
 import Foundation
