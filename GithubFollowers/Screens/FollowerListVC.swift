@@ -7,20 +7,24 @@
 
 import UIKit
 
+protocol FollowerListVCDelegate: class {
+    func didRequestFollowers(for username: String)
+}
+
 class FollowerListVC: UIViewController {
 
     enum Section { case main }
     
     //MARK:- Variables
-    var username: String!
-    var followers: [Follower] = []
-    var filteredFollowers: [Follower] = []
-    var page = 1
-    var hasMoreFollowers = true
-    var isSearching = false
+    private var username: String!
+    private var followers: [Follower] = []
+    private var filteredFollowers: [Follower] = []
+    private var page = 1
+    private var hasMoreFollowers = true
+    private var isSearching = false
     
-    var collectionView: UICollectionView!
-    var dataSource:     UICollectionViewDiffableDataSource<Section, Follower>!
+    private var collectionView: UICollectionView!
+    private var dataSource:     UICollectionViewDiffableDataSource<Section, Follower>!
     
     //MARK:- Lifecycle
     override func viewDidLoad() {
@@ -36,6 +40,11 @@ class FollowerListVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+
+    //MARK:- Methods
+    func set(username: String?) {
+        self.username = username
     }
     
     //MARK:- Private
@@ -71,7 +80,7 @@ class FollowerListVC: UIViewController {
             return cell
         })
     }
-    
+
     private func updateData(on followers: [Follower]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
         snapshot.appendSections([.main])
@@ -121,10 +130,11 @@ extension FollowerListVC: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let follower = self.isSearching ? self.filteredFollowers[indexPath.item] : self.followers[indexPath.item]
-        let userInfoVC = UserInfoVC()
+        let follower    = self.isSearching ? self.filteredFollowers[indexPath.item] : self.followers[indexPath.item]
+        let userInfoVC  = UserInfoVC()
         userInfoVC.set(username: follower.login)
-        let navController = UINavigationController(rootViewController: userInfoVC)
+        userInfoVC.delegate = self
+        let navController   = UINavigationController(rootViewController: userInfoVC)
         
         self.present(navController, animated: true, completion: nil)
     }
@@ -141,5 +151,17 @@ extension FollowerListVC: UISearchResultsUpdating, UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.isSearching = false
         self.updateData(on: self.followers)
+    }
+}
+
+extension FollowerListVC: FollowerListVCDelegate {
+    func didRequestFollowers(for username: String) {
+        title           = username
+        self.username   = username
+        self.page       = 1
+        self.followers.removeAll()
+        self.filteredFollowers.removeAll()
+        self.collectionView.setContentOffset(.zero, animated: true)
+        self.getFollowers(username: username, page: page)
     }
 }

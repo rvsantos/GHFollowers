@@ -10,20 +10,20 @@ import UIKit
 class GFAlertVC: UIViewController {
     
     // MARK: - Components
-    let containerView       = UIView()
-    let titleLabel          = GFTitleLabel(textAlignment: .center, fontSize: 20)
-    let messageLabel        = GFBodyLabel(textAlignment: .center)
-    let actionButton        = GFButton(backgroundColor: .systemPink, title: "Ok")
+    private let containerView       = UIView()
+    private let titleLabel          = GFTitleLabel(textAlignment: .center, fontSize: 20)
+    private let messageLabel        = GFBodyLabel(textAlignment: .center)
+    private let actionButton        = GFButton(backgroundColor: .systemPink, title: "Ok")
     
     
     // MARK: - Constants
-    let padding: CGFloat    = 20
+    private let padding: CGFloat    = 20
     
     
     // MARK: - Variables
-    var alertTitle: String?
-    var message: String?
-    var buttonTitle: String?
+    private var alertTitle: String?
+    private var message: String?
+    private var buttonTitle: String?
     
     
     // MARK: - Lifecycle
