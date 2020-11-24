@@ -39,6 +39,7 @@
 		1EB9924C255F9BEF00FBBA8E /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB9924B255F9BEF00FBBA8E /* GFTitleLabel.swift */; };
 		1EB9924F255F9DCC00FBBA8E /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB9924E255F9DCC00FBBA8E /* GFBodyLabel.swift */; };
 		1EB99252255F9EAF00FBBA8E /* GFAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB99251255F9EAF00FBBA8E /* GFAlertVC.swift */; };
+		1EBE39CB256B6F7A008EF640 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE39CA256B6F7A008EF640 /* PersistenceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		1EB9924B255F9BEF00FBBA8E /* GFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTitleLabel.swift; sourceTree = "<group>"; };
 		1EB9924E255F9DCC00FBBA8E /* GFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFBodyLabel.swift; sourceTree = "<group>"; };
 		1EB99251255F9EAF00FBBA8E /* GFAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAlertVC.swift; sourceTree = "<group>"; };
+		1EBE39CA256B6F7A008EF640 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				1E2F5E172560BDA7002CB356 /* NetworkManager.swift */,
+				1EBE39CA256B6F7A008EF640 /* PersistenceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				1E9C3D54255E137C0049151C /* FollowerListVC.swift in Sources */,
 				1E2F5E142560A46F002CB356 /* User.swift in Sources */,
 				1E35783625646986006C3588 /* GFError.swift in Sources */,
+				1EBE39CB256B6F7A008EF640 /* PersistenceManager.swift in Sources */,
 				1E2F5E242560E246002CB356 /* FollowerCell.swift in Sources */,
 				1E2F5E272560E2F2002CB356 /* GFAvatarImageView.swift in Sources */,
 				1EB99252255F9EAF00FBBA8E /* GFAlertVC.swift in Sources */,
