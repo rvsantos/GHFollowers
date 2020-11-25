@@ -11,22 +11,33 @@ protocol FollowerListVCDelegate: class {
     func didRequestFollowers(for username: String)
 }
 
-class FollowerListVC: UIViewController {
+class FollowerListVC: GFDataLoadingVC {
 
     enum Section { case main }
     
     //MARK:- Variables
     private var username: String!
-    private var followers: [Follower] = []
-    private var filteredFollowers: [Follower] = []
-    private var page = 1
-    private var hasMoreFollowers = true
-    private var isSearching = false
+    private var followers: [Follower]           = []
+    private var filteredFollowers: [Follower]   = []
+    private var page                            = 1
+    private var hasMoreFollowers                = true
+    private var isSearching                     = false
     
     private var collectionView: UICollectionView!
     private var dataSource:     UICollectionViewDiffableDataSource<Section, Follower>!
     
     //MARK:- Lifecycle
+    init(username: String) {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.username   = username
+        title           = username
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,11 +52,6 @@ class FollowerListVC: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
-
-    //MARK:- Methods
-    func set(username: String?) {
-        self.username = username
-    }
     
     //MARK:- Private
     private func configureViewController() {
@@ -59,7 +65,7 @@ class FollowerListVC: UIViewController {
     private func configureColletionView() {
         self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
         self.view.addSubview(self.collectionView)
-        self.collectionView.delegate = self
+        self.collectionView.delegate        = self
         self.collectionView.backgroundColor = .systemBackground
         self.collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID)
     }

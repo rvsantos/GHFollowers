@@ -1,33 +1,19 @@
 //
-//  BaseViewController.swift
+//  GFTabBarController.swift
 //  GithubFollowers
 //
-//  Created by Rafael V. dos Santos on 12/11/20.
+//  Created by Rafael V. dos Santos on 24/11/20.
 //
 
 import UIKit
 
-class BaseViewController: UIViewController {
+class GFTabBarController: UITabBarController {
 
-    // MARK: - Variables
-    static let shared = BaseViewController()
-    var tabbar: UITabBarController {
-        return self.createTabBar()
-    }
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-
-    // MARK: - Helpers
-    private func createTabBar() -> UITabBarController {
-        self.configureNavigationBar()
-        
-        let tabbar = UITabBarController()
         UITabBar.appearance().tintColor = .systemGreen
-        tabbar.viewControllers = [self.createSearchNC(), self.createFavoritesNC()]
-        return tabbar
+        viewControllers = [self.createSearchNC(), self.createFavoritesNC()]
     }
     
     // MARK: - Private
@@ -45,7 +31,4 @@ class BaseViewController: UIViewController {
         return UINavigationController(rootViewController: favoritesListVC)
     }
 
-    private func configureNavigationBar() {
-        UINavigationBar.appearance().tintColor = .systemGreen
-    }
 }

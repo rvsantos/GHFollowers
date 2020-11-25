@@ -12,17 +12,17 @@ class GFTitleLabel: UILabel {
     //MARK:- Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.configure()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
-        super.init(frame: .zero)
+    convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
+        self.init(frame: .zero)
         self.textAlignment = textAlignment
         self.font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
-        self.configure()
     }
     
     //MARK:- Private

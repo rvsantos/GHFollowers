@@ -40,7 +40,7 @@ class GFUserInfoHeaderVC: UIViewController {
     
     // MARK: - Helpers
     private func configureUIElements() {
-        self.avatarImageView.downloadImage(from: self.user.avatarUrl)
+        self.downloadAvatarImage(from: self.user, in: self.avatarImageView)
         self.usernameLabel.text             = self.user.login
         self.nameLabel.text                 = self.user.name ?? ""
         self.locationLabel.text             = self.user.location ?? "No Location"
@@ -49,6 +49,13 @@ class GFUserInfoHeaderVC: UIViewController {
         
         self.locationImageView.image        = UIImage(systemName: SFSymbols.location)
         self.locationImageView.tintColor    = .secondaryLabel
+    }
+    
+    private func downloadAvatarImage(from user: User, in avatar: UIImageView) {
+        NetworkManager.shared.downloadImage(from: user.avatarUrl) { [weak self] (image) in
+            guard let _ = self else { return }
+            DispatchQueue.main.async { avatar.image = image  }
+        }
     }
     
     private func addSubiew() {

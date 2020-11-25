@@ -10,33 +10,29 @@ import UIKit
 class GFAlertVC: UIViewController {
     
     // MARK: - Components
-    private let containerView       = UIView()
+    private let containerView       = GFAlertContainerView()
     private let titleLabel          = GFTitleLabel(textAlignment: .center, fontSize: 20)
     private let messageLabel        = GFBodyLabel(textAlignment: .center)
     private let actionButton        = GFButton(backgroundColor: .systemPink, title: "Ok")
     
-    
     // MARK: - Constants
     private let padding: CGFloat    = 20
-    
     
     // MARK: - Variables
     private var alertTitle: String?
     private var message: String?
     private var buttonTitle: String?
     
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.75)
+        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         
         self.configureContainerView()
         self.configureTitleLabel()
         self.configureActionButton()
         self.configureMessageLabel()
     }
-    
     
     // MARK: - Initialization
     init(title: String, message: String, buttonTitle: String) {
@@ -46,30 +42,22 @@ class GFAlertVC: UIViewController {
         self.buttonTitle    = buttonTitle
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     // MARK: - Private
     private func configureContainerView() {
-        self.view.addSubview(self.containerView)
-        self.containerView.backgroundColor      = .systemBackground
-        self.containerView.layer.cornerRadius   = 16
-        self.containerView.layer.borderWidth    = 2
-        self.containerView.layer.borderColor    = UIColor.white.cgColor
-        self.containerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(self.containerView)
         
         NSLayoutConstraint.activate([
-            self.containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.containerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            self.containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            self.containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             self.containerView.widthAnchor.constraint(equalToConstant: 280),
             self.containerView.heightAnchor.constraint(equalToConstant: 220)
         ])
     }
-    
-    
+        
     private func configureTitleLabel() {
         self.containerView.addSubview(self.titleLabel)
         self.titleLabel.text = self.alertTitle ?? "Something went wrong"
@@ -81,7 +69,6 @@ class GFAlertVC: UIViewController {
             self.titleLabel.heightAnchor.constraint(equalToConstant: 28)
         ])
     }
-
     
     private func configureActionButton() {
         self.containerView.addSubview(self.actionButton)
@@ -96,7 +83,6 @@ class GFAlertVC: UIViewController {
         ])
     }
 
-    
     private func configureMessageLabel() {
         self.containerView.addSubview(self.messageLabel)
         self.messageLabel.text          = self.message ?? "Unable to complete request"
@@ -109,7 +95,6 @@ class GFAlertVC: UIViewController {
             self.messageLabel.bottomAnchor.constraint(equalTo: self.actionButton.bottomAnchor, constant: -12),
         ])
     }
-    
     
     // MARK: - @objc
     @objc private func dismissVC() {
