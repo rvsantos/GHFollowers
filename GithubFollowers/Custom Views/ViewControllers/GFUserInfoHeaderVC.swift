@@ -47,7 +47,7 @@ class GFUserInfoHeaderVC: UIViewController {
         self.bioLabel.text                  = self.user.bio ?? "No bio available"
         self.bioLabel.numberOfLines         = 3
         
-        self.locationImageView.image        = UIImage(systemName: SFSymbols.location)
+        self.locationImageView.image        = SFSymbols.location
         self.locationImageView.tintColor    = .secondaryLabel
     }
     
