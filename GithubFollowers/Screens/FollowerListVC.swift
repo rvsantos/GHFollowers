@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol FollowerListVCDelegate: class {
-    func didRequestFollowers(for username: String)
-}
-
 class FollowerListVC: GFDataLoadingVC {
 
     enum Section { case main }
@@ -64,8 +60,8 @@ class FollowerListVC: GFDataLoadingVC {
     }
     
     private func configureColletionView() {
-        self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
-        self.view.addSubview(self.collectionView)
+        self.collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
+        view.addSubview(self.collectionView)
         self.collectionView.delegate        = self
         self.collectionView.backgroundColor = .systemBackground
         self.collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID)
@@ -197,13 +193,13 @@ extension FollowerListVC: UISearchResultsUpdating {
             self.isSearching = false
             return
         }
-        self.isSearching = true
-        self.filteredFollowers = self.followers.filter { $0.login.lowercased().contains(filter.lowercased())}
+        self.isSearching        = true
+        self.filteredFollowers  = self.followers.filter { $0.login.lowercased().contains(filter.lowercased())}
         self.updateData(on: self.filteredFollowers)
     }
 }
 
-extension FollowerListVC: FollowerListVCDelegate {
+extension FollowerListVC: UserInfoVCDelegate {
     func didRequestFollowers(for username: String) {
         title           = username
         self.username   = username

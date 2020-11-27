@@ -41,6 +41,7 @@
 		1EB9924F255F9DCC00FBBA8E /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB9924E255F9DCC00FBBA8E /* GFBodyLabel.swift */; };
 		1EB99252255F9EAF00FBBA8E /* GFAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB99251255F9EAF00FBBA8E /* GFAlertVC.swift */; };
 		1EBE39CB256B6F7A008EF640 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE39CA256B6F7A008EF640 /* PersistenceManager.swift */; };
+		1EDACD7525707F0F0019A278 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDACD7425707F0F0019A278 /* UIView+Ext.swift */; };
 		1EF67A07256CA3C400220638 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF67A06256CA3C400220638 /* FavoriteCell.swift */; };
 		1EF67A0C256CB8B200220638 /* GFTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF67A0B256CB8B200220638 /* GFTabBarController.swift */; };
 /* End PBXBuildFile section */
@@ -82,6 +83,7 @@
 		1EB9924E255F9DCC00FBBA8E /* GFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFBodyLabel.swift; sourceTree = "<group>"; };
 		1EB99251255F9EAF00FBBA8E /* GFAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAlertVC.swift; sourceTree = "<group>"; };
 		1EBE39CA256B6F7A008EF640 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		1EDACD7425707F0F0019A278 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		1EF67A06256CA3C400220638 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		1EF67A0B256CB8B200220638 /* GFTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -233,6 +235,7 @@
 				1E51B0F625604AAC003303DE /* UIViewController+Ext.swift */,
 				1E434F8F25676C1800C6E6F1 /* Date+Ext.swift */,
 				1E434F9225676C3F00C6E6F1 /* String+Ext.swift */,
+				1EDACD7425707F0F0019A278 /* UIView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				1E9C3D28255DB6C80049151C /* SceneDelegate.swift in Sources */,
 				1EA88BF125674FA0001CAB83 /* GFItemInfoView.swift in Sources */,
 				1EB9924F255F9DCC00FBBA8E /* GFBodyLabel.swift in Sources */,
+				1EDACD7525707F0F0019A278 /* UIView+Ext.swift in Sources */,
 				1E35783F2564B191006C3588 /* Constants.swift in Sources */,
 				1EF67A0C256CB8B200220638 /* GFTabBarController.swift in Sources */,
 			);

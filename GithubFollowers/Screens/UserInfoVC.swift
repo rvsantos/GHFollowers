@@ -8,8 +8,7 @@
 import UIKit
 
 protocol UserInfoVCDelegate: class {
-    func didTapGitHubProfile(for user: User)
-    func didTapGetFollowers(for user: User)
+    func didRequestFollowers(for username: String)
 }
 
 class UserInfoVC: UIViewController {
@@ -22,7 +21,7 @@ class UserInfoVC: UIViewController {
     private let dateLabel           = GFBodyLabel(textAlignment: .center)
     private var itemViews: [UIView] = []
     
-    weak var delegate: FollowerListVCDelegate!
+    weak var delegate: UserInfoVCDelegate!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -45,27 +44,27 @@ class UserInfoVC: UIViewController {
         self.itemViews = [self.headerView, self.itemViewOne, self.itemViewTwo, self.dateLabel]
         
         for itemView in self.itemViews {
-            self.view.addSubview(itemView)
+            view.addSubview(itemView)
             itemView.translatesAutoresizingMaskIntoConstraints = false
             
             NSLayoutConstraint.activate([
-                itemView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: padding),
-                itemView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -padding),
+                itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+                itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             ])
         }
         
         NSLayoutConstraint.activate([
-            self.headerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            self.headerView.heightAnchor.constraint(equalToConstant: 180),
+            self.headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            self.headerView.heightAnchor.constraint(equalToConstant: 210),
             
-            self.itemViewOne.topAnchor.constraint(equalTo: self.headerView.bottomAnchor, constant: 40),
+            self.itemViewOne.topAnchor.constraint(equalTo: self.headerView.bottomAnchor, constant: padding),
             self.itemViewOne.heightAnchor.constraint(equalToConstant: itemHeigth),
             
             self.itemViewTwo.topAnchor.constraint(equalTo: self.itemViewOne.bottomAnchor, constant: padding),
             self.itemViewTwo.heightAnchor.constraint(equalToConstant: itemHeigth),
             
             self.dateLabel.topAnchor.constraint(equalTo: self.itemViewTwo.bottomAnchor, constant: padding),
-            self.dateLabel.heightAnchor.constraint(equalToConstant: 18),
+            self.dateLabel.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
     
@@ -96,15 +95,9 @@ class UserInfoVC: UIViewController {
     }
     
     private func configureUIElements(with user: User) {
-        let repoItemVC          = GFRepoItemVC(user: user)
-        repoItemVC.delegate     = self
-        
-        let followerItemVC      = GFFollowerItemVC(user: user)
-        followerItemVC.delegate = self
-        
         self.add(childVC: GFUserInfoHeaderVC(user: user), to: self.headerView)
-        self.add(childVC: repoItemVC, to: self.itemViewOne)
-        self.add(childVC: followerItemVC, to: self.itemViewTwo)
+        self.add(childVC: GFRepoItemVC(user: user, delegate: self), to: self.itemViewOne)
+        self.add(childVC: GFFollowerItemVC(user: user, delegate: self), to: self.itemViewTwo)
         self.dateLabel.text = "Github since \(user.createdAt.convertToMonthYearFormat())"
     }
     
@@ -114,7 +107,7 @@ class UserInfoVC: UIViewController {
     }
 }
 
-extension UserInfoVC: UserInfoVCDelegate {
+extension UserInfoVC: GFFollowerItemVCDelegate, GFRepoItemVCDelegate {
     func didTapGitHubProfile(for user: User) {
         guard let url = URL(string: user.htmlUrl) else {
             self.presentGFAlertOnMainThread(

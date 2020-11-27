@@ -16,7 +16,6 @@ class GFItemInfoVC: UIViewController {
     let actionButton    = GFButton()
     
     var user: User!
-    weak var delegate: UserInfoVCDelegate!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -27,7 +26,6 @@ class GFItemInfoVC: UIViewController {
         self.configureActionButton()
     }
     
-    // MARK: - Initialization
     init(user: User) {
         super.init(nibName: nil, bundle: nil)
         self.user = user
@@ -37,7 +35,7 @@ class GFItemInfoVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Helpers
+    // MARK: - Private
     private func configureBackgroundView() {
         view.layer.cornerRadius = 18
         view.backgroundColor    = .secondarySystemBackground
@@ -52,11 +50,9 @@ class GFItemInfoVC: UIViewController {
     }
     
     private func layoutUI() {
-        view.addSubview(self.stackView)
-        view.addSubview(self.actionButton)
-        
+        view.addSubViews(self.stackView, self.actionButton)
+
         self.stackView.translatesAutoresizingMaskIntoConstraints = false
-        
         let padding: CGFloat = 20
         
         NSLayoutConstraint.activate([
@@ -76,5 +72,6 @@ class GFItemInfoVC: UIViewController {
         self.actionButton.addTarget(self, action: #selector(self.actionButtonTapped), for: .touchUpInside)
     }
 
+    // MARK: - Selectors
     @objc func actionButtonTapped() {}
 }
