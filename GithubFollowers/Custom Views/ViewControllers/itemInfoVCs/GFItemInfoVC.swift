@@ -26,20 +26,24 @@ class GFItemInfoVC: UIViewController {
         self.configureActionButton()
     }
     
+    
     init(user: User) {
         super.init(nibName: nil, bundle: nil)
         self.user = user
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     // MARK: - Private
     private func configureBackgroundView() {
         view.layer.cornerRadius = 18
         view.backgroundColor    = .secondarySystemBackground
     }
+    
     
     private func configureStackView() {
         self.stackView.axis         = .horizontal
@@ -48,6 +52,7 @@ class GFItemInfoVC: UIViewController {
         self.stackView.addArrangedSubview(self.itemInfoViewOne)
         self.stackView.addArrangedSubview(self.itemInfoViewTwo)
     }
+    
     
     private func layoutUI() {
         view.addSubViews(self.stackView, self.actionButton)
@@ -68,10 +73,12 @@ class GFItemInfoVC: UIViewController {
         ])
     }
     
+    
     private func configureActionButton() {
         self.actionButton.addTarget(self, action: #selector(self.actionButtonTapped), for: .touchUpInside)
     }
 
+    
     // MARK: - Selectors
     @objc func actionButtonTapped() {}
 }

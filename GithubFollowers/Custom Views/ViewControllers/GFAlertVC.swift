@@ -23,6 +23,7 @@ class GFAlertVC: UIViewController {
     private var message: String?
     private var buttonTitle: String?
     
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +31,13 @@ class GFAlertVC: UIViewController {
         
         view.addSubview(self.containerView)
         self.containerView.addSubViews(self.titleLabel, self.actionButton, self.messageLabel)
+        
         self.configureContainerView()
         self.configureTitleLabel()
         self.configureActionButton()
         self.configureMessageLabel()
     }
+    
     
     // MARK: - Initialization
     init(title: String, message: String, buttonTitle: String) {
@@ -44,9 +47,11 @@ class GFAlertVC: UIViewController {
         self.buttonTitle    = buttonTitle
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     // MARK: - Private
     private func configureContainerView() {
@@ -57,7 +62,8 @@ class GFAlertVC: UIViewController {
             self.containerView.heightAnchor.constraint(equalToConstant: 220)
         ])
     }
-        
+    
+    
     private func configureTitleLabel() {
         self.titleLabel.text = self.alertTitle ?? "Something went wrong"
         
@@ -68,6 +74,7 @@ class GFAlertVC: UIViewController {
             self.titleLabel.heightAnchor.constraint(equalToConstant: 28)
         ])
     }
+    
     
     private func configureActionButton() {
         self.actionButton.setTitle(self.buttonTitle ?? "Ok", for: .normal)
@@ -81,6 +88,7 @@ class GFAlertVC: UIViewController {
         ])
     }
 
+    
     private func configureMessageLabel() {
         self.messageLabel.text          = self.message ?? "Unable to complete request"
         self.messageLabel.numberOfLines = 4
@@ -93,9 +101,9 @@ class GFAlertVC: UIViewController {
         ])
     }
     
+    
     // MARK: - @objc
     @objc private func dismissVC() {
         self.dismiss(animated: true, completion: nil)
     }
-    
 }

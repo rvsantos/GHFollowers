@@ -15,9 +15,11 @@ class GFTextField: UITextField {
         self.configure()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     init(placeholder: String) {
         super.init(frame: .zero)
@@ -25,9 +27,11 @@ class GFTextField: UITextField {
         self.configure()
     }
     
+    
     // MARK:- Private
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
+    
         layer.cornerRadius          = 10
         layer.borderWidth           = 2
         layer.borderColor           = UIColor.systemGray4.cgColor
@@ -43,6 +47,5 @@ class GFTextField: UITextField {
         autocorrectionType          = .no
         returnKeyType               = .go
         clearButtonMode             = .whileEditing
-    }
-    
+    }    
 }

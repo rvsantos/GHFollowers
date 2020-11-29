@@ -19,14 +19,16 @@ class GFUserInfoHeaderVC: UIViewController {
     
     var user: User!
     
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.addSubiew()
+        view.addSubViews(self.avatarImageView, self.usernameLabel, self.nameLabel, self.locationImageView, self.locationLabel, self.bioLabel)
         self.layoutUI()
         self.configureUIElements()
     }
+    
     
     // MARK: - Initialization
     init(user: User) {
@@ -34,13 +36,15 @@ class GFUserInfoHeaderVC: UIViewController {
         self.user = user
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     // MARK: - Helpers
     private func configureUIElements() {
-        self.downloadAvatarImage(from: self.user, in: self.avatarImageView)
+        self.avatarImageView.downloadImage(fromURL: self.user.avatarUrl)
         self.usernameLabel.text             = self.user.login
         self.nameLabel.text                 = self.user.name ?? ""
         self.locationLabel.text             = self.user.location ?? "No Location"
@@ -51,23 +55,6 @@ class GFUserInfoHeaderVC: UIViewController {
         self.locationImageView.tintColor    = .secondaryLabel
     }
     
-    private func downloadAvatarImage(from user: User, in avatar: UIImageView) {
-        NetworkManager.shared.downloadImage(from: user.avatarUrl) { [weak self] (image) in
-            guard let _ = self else { return }
-            DispatchQueue.main.async { avatar.image = image  }
-        }
-    }
-    
-    private func addSubiew() {
-        view.addSubViews(
-            self.avatarImageView,
-            self.usernameLabel,
-            self.nameLabel,
-            self.locationImageView,
-            self.locationLabel,
-            self.bioLabel
-        )
-    }
     
     private func layoutUI() {
         let padding: CGFloat            = 20

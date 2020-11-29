@@ -20,8 +20,7 @@ class NetworkManager {
     private init() {}
     
     //MARK:- Methods
-    typealias followerClosure = (Result<[Follower], GFError>) -> Void
-    func getFollowers(for username: String, page: Int, completed: @escaping followerClosure) {
+    func getFollowers(for username: String, page: Int, completed: @escaping (Result<[Follower], GFError>) -> Void) {
         let endpoint = self.baseUrl + "/users/\(username)/followers?per_page=100&page=\(page)"
         
         guard let url = URL(string: endpoint) else {
@@ -56,6 +55,7 @@ class NetworkManager {
         
         task.resume()
     }
+    
     
     func getUserInfo(for username: String, completed: @escaping (Result<User, GFError>) -> Void) {
         let endpoint = self.baseUrl + "/users/\(username)"
@@ -94,6 +94,7 @@ class NetworkManager {
         task.resume()
     }
     
+    
     func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void) {
         let cacheKey = NSString(string: urlString)
         
@@ -125,5 +126,4 @@ class NetworkManager {
         
         task.resume()
     }
-    
 }
