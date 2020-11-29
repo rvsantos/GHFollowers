@@ -19,14 +19,16 @@ class GFUserInfoHeaderVC: UIViewController {
     
     var user: User!
     
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.addSubiew()
+        view.addSubViews(self.avatarImageView, self.usernameLabel, self.nameLabel, self.locationImageView, self.locationLabel, self.bioLabel)
         self.layoutUI()
         self.configureUIElements()
     }
+    
     
     // MARK: - Initialization
     init(user: User) {
@@ -34,31 +36,25 @@ class GFUserInfoHeaderVC: UIViewController {
         self.user = user
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     // MARK: - Helpers
     private func configureUIElements() {
-        self.avatarImageView.downloadImage(from: self.user.avatarUrl)
+        self.avatarImageView.downloadImage(fromURL: self.user.avatarUrl)
         self.usernameLabel.text             = self.user.login
         self.nameLabel.text                 = self.user.name ?? ""
         self.locationLabel.text             = self.user.location ?? "No Location"
         self.bioLabel.text                  = self.user.bio ?? "No bio available"
         self.bioLabel.numberOfLines         = 3
         
-        self.locationImageView.image        = UIImage(systemName: SFSymbols.location)
+        self.locationImageView.image        = SFSymbols.location
         self.locationImageView.tintColor    = .secondaryLabel
     }
     
-    private func addSubiew() {
-        view.addSubview(self.avatarImageView)
-        view.addSubview(self.usernameLabel)
-        view.addSubview(self.nameLabel)
-        view.addSubview(self.locationImageView)
-        view.addSubview(self.locationLabel)
-        view.addSubview(self.bioLabel)
-    }
     
     private func layoutUI() {
         let padding: CGFloat            = 20
@@ -94,7 +90,7 @@ class GFUserInfoHeaderVC: UIViewController {
             self.bioLabel.topAnchor.constraint(equalTo: self.avatarImageView.bottomAnchor, constant: textImagePadding),
             self.bioLabel.leadingAnchor.constraint(equalTo: self.avatarImageView.leadingAnchor),
             self.bioLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            self.bioLabel.heightAnchor.constraint(equalToConstant: 80),
+            self.bioLabel.heightAnchor.constraint(equalToConstant: 90),
         ])
     }
 }

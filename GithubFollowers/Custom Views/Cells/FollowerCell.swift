@@ -16,26 +16,31 @@ class FollowerCell: UICollectionViewCell {
     private let avatarImageView = GFAvatarImageView(frame: .zero)
     private let usernameLabel   = GFTitleLabel(textAlignment: .center, fontSize: 16)
     
+    
     //MARK:- Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.configure()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK:- Private
     
+    //MARK:- Private
     func set(follower: Follower) {
         self.usernameLabel.text = follower.login
-        self.avatarImageView.downloadImage(from: follower.avatarUrl)
+        self.avatarImageView.downloadImage(fromURL: follower.avatarUrl)
     }
     
+    
     private func configure() {
-        addSubview(self.avatarImageView)
-        addSubview(self.usernameLabel)
+        addSubViews(
+            self.avatarImageView,
+            self.usernameLabel
+        )
         
         let padding: CGFloat = 8
         

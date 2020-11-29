@@ -10,11 +10,12 @@ import UIKit
 class FavoriteCell: UITableViewCell {
 
     //MARK:- Identifier
-    static let reuseID = "FavoriteCell"
+    static let reuseID  = "FavoriteCell"
     
     //MARK:- Components
     let avatarImageView = GFAvatarImageView(frame: .zero)
     let usernameLabel   = GFTitleLabel(textAlignment: .left, fontSize: 26)
+    
     
     //MARK:- Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -23,19 +24,24 @@ class FavoriteCell: UITableViewCell {
         self.configure()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     //MARK:- Helpers
     func set(favorite: Follower) {
         self.usernameLabel.text = favorite.login
-        self.avatarImageView.downloadImage(from: favorite.avatarUrl)
+        self.avatarImageView.downloadImage(fromURL: favorite.avatarUrl)
     }
     
+    
     private func configure() {
-        addSubview(self.avatarImageView)
-        addSubview(self.usernameLabel)
+        addSubViews(
+            self.avatarImageView,
+            self.usernameLabel
+        )
         
         accessoryType           = .disclosureIndicator
         let padding: CGFloat    = 12
